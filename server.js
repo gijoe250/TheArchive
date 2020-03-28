@@ -1,11 +1,20 @@
-const express = require('express');
+/*const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
 const configDB = require('./config/database');
+*/
+const http = require('http');
+const app = require('./app');
 
-mongoose.connect(
+const port = process.env.PORT || 3500;
+
+const server = http.createServer(app);
+
+server.listen(port);
+
+/*mongoose.connect(
     configDB.uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -16,7 +25,8 @@ mongoose.connect(
         console.log('Sucesssfully connected');
     }
 );
-
+*/
+/*
 // Middle ware
 app.use(express.json({ extended: false }));
 app.use(bodyParser.json());
@@ -25,3 +35,4 @@ app.use(bodyParser.json());
 app.use('/api/items', require('./app/routes/items.js'));
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('Server Started on ${PORT}'));
+*/
