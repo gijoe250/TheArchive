@@ -1,32 +1,19 @@
 {
-    "name": "thearchive",
-    "version": "1.0.0",
-    "description": "Repository for RowdyHacks project",
-    "main": "index.js",
-    "scripts": {
-        "start": "nodemon server.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/gijoe250/TheArchive.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/gijoe250/TheArchive/issues"
-    },
-    "homepage": "https://github.com/gijoe250/TheArchive#readme",
-    "dependencies": {
-        "body-parser": "^1.19.0",
-        "config": "^3.3.1",
-        "ejs": "^3.0.1",
-        "express": "^4.17.1",
-        "mongoose": "^5.9.6",
-        "vue": "^2.6.11"
-    },
-    "devDependencies": {
-        "concurrently": "^5.1.0",
-        "nodemon": "^2.0.2"
-    }
+  "name": "rest-shop",
+  "version": "1.0.0",
+  "description": "A Node.js RESTful API Tutorial Project (Build a simple shop API)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "restful",
+    "api"
+  ],
+  "author": "Maximilian Schwarzmüller",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
