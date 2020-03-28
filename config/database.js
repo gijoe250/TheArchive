@@ -1,3 +1,5 @@
+// CHANGE <username> && <password> to your mongoDB user info
 module.exports = {
-    uri: 'mongodb+srv://zfv431:zfv431@cluster0-oddgf.azure.mongodb.net/test?retryWrites=true&w=majority'
+    uri: 'mongodb+srv://<username>:<password>@cluster0-oddgf.azure.mongodb.net/test?retryWrites=true&w=majority'
 };
+
