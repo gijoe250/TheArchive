@@ -3,13 +3,11 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link to="/" class="nav-link">Hello World</router-link>
+
+          <router-link to="/hello" class="nav-link">Hello World</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/home" class="nav-link">Home</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/contact" class="nav-link">Contact Us</router-link>
+          <router-link to="/items" class="nav-link">Posts</router-link>
         </li>
       </ul>
     </nav>
