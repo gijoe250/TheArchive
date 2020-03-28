@@ -1,13 +1,15 @@
 import Vue from 'vue';
 import App from './App.vue';
+import Router from 'vue-router';
+//custom
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Router from 'vue-router';
+// compounent
 import HelloWorld from '@/components/HelloWorld';
-import item from '@/components/Items';
-import VueRouter from 'vue-router';
-Vue.config.productionTip = false;
+import posts from '@/components/Post';
+import NewPost from '@/components/NewPost';
 
+Vue.config.productionTip = false;
 // Install BootstrapVue
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
@@ -20,13 +22,18 @@ const routes = [{
         component: HelloWorld
     },
     {
-        path: '/items',
-        name: 'item',
-        component: item
+        path: '/posts',
+        name: 'posts',
+        component: posts
+    },
+    {
+        path: '/posts/new',
+        name: 'NewPost',
+        component: NewPost
     }
 ];
 
-const router = new VueRouter({
+const router = new Router({
     routes
 });
 
