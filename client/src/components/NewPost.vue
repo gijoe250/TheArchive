@@ -37,13 +37,14 @@ export default {
   },
   methods: {
     addPost: function() {
-      alert('You sumbitted' + this.Post.title + ' + ' + this.Post.description);
       let newPost = {
         title: this.Post.title,
         description: this.Post.description
       };
 
+      alert(newPost.title);
       alert(newPost.description);
+
       axios
         .post('http://localhost:8081/api/post/', newPost)
         .then(response => {
