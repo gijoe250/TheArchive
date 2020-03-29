@@ -24,8 +24,6 @@
             <tr>
               <td>Title</td>
               <td>Price</td>
-              <td>Num of Players</td>
-              <td>Difficulty</td>
               <td>Duration</td>
               <td>Description</td>
               <td align="center">Action</td>
@@ -33,15 +31,9 @@
             <tr v-for="games in games" v-bind:key="games.title">
               <td>{{ games.name }}</td>
               <td>{{ games.price }}</td>
-              <td>{{ games.numOfPpl }}</td>
-              <td>{{ games.difficulty }}</td>
               <td>{{ games.duration }}</td>
               <td>{{ games.description }}</td>
               <td align="center">
-                <router-link
-                  v-bind:to="{name: 'EditBoardGame', params: {id: games._id}}"
-                  >Edit</router-link
-                >|
                 <a href="#" @click="deleteGames(games._id)">Delete</a>
               </td>
             </tr>
