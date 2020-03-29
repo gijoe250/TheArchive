@@ -28,7 +28,8 @@
           <td>{{ games.duration }}</td>
           <td>{{ games.description }}</td>
           <td align="center">
-            <router-link v-bind:to="{name: 'EditPost', params: {id: games._id}}"
+            <router-link
+              v-bind:to="{name: 'EditBoardGame', params: {id: games._id}}"
               >Edit</router-link
             >
             |
