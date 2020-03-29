@@ -9,6 +9,7 @@ const boardgameSchema = mongoose.Schema({
     difficulty: Number,
     duration: Number,
     description: String
+
 });
 
 module.exports = mongoose.model('Boardgame', boardgameSchema);
