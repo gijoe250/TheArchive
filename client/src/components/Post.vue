@@ -3,8 +3,8 @@
     <h1>Posts</h1>
     <div v-if="posts.length > 0" class="table-wrap">
       <div>
-        <router-link v-bind:to="{name: 'NewPost'}" class=""
-          >Add Post</router-link
+        <router-link v-bind:to="{name: 'NewBoardGame'}" class=""
+          >Add New NewBoardGame</router-link
         >
       </div>
       <table>
@@ -28,8 +28,8 @@
     </div>
     <div v-else>
       There are no posts.. Lets add one now <br /><br />
-      <router-link v-bind:to="{name: 'NewPost'}" class="add_post_link"
-        >Add Post</router-link
+      <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_post_link"
+        >Add New Board Game</router-link
       >
     </div>
   </div>

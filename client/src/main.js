@@ -7,10 +7,9 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // compounent
 import HelloWorld from '@/components/HelloWorld';
 import posts from '@/components/Post';
-import NewPost from '@/components/NewPost';
+
+import NewBoardGame from '@/components/NewBoardGames';
 import Login from '@/components/Login';
-
-
 
 Vue.config.productionTip = false;
 // Install BootstrapVue
@@ -30,6 +29,10 @@ const routes = [{
         component: posts
     },
     {
+        path: '/boardgame/new',
+        name: 'NewBoardGame',
+        component: NewBoardGame
+
         path: '/posts/new',
         name: 'NewPost',
         component: NewPost
@@ -38,6 +41,7 @@ const routes = [{
         path: '/login',
         name: 'login',
         component: Login
+
     }
 ];
 
