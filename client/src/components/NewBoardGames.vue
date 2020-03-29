@@ -63,7 +63,10 @@ export default {
     addBoardgame: function() {
       let newBoardGame = {
         name: this.Boardgame.name,
-        price: this.Boardgame.price
+        price: this.Boardgame.price,
+        description: this.Boardgame.description,
+        duration: this.Boardgame.duration,
+        difficulty: this.Boardgame.difficulties
       };
       axios
         .post("http://localhost:8081/boardgames", newBoardGame)

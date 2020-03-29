@@ -3,9 +3,7 @@
     <h1>Boardgames</h1>
     <div v-if="games.length > 0" class="table-wrap">
       <div>
-        <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link"
-          >Add Board Game</router-link
-        >
+        <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link">Add Board Game</router-link>
       </div>
 
       <br />
@@ -28,11 +26,7 @@
           <td>{{ games.duration }}</td>
           <td>{{ games.description }}</td>
           <td align="center">
-            <router-link
-              v-bind:to="{name: 'EditBoardGame', params: {id: games._id}}"
-              >Edit</router-link
-            >
-            |
+            <router-link v-bind:to="{name: 'EditBoardGame', params: {id: games._id}}">Edit</router-link>|
             <a href="#" @click="deleteGames(games._id)">Delete</a>
           </td>
         </tr>
@@ -40,19 +34,19 @@
     </div>
 
     <div v-else>
-      There are no board games.. Lets add one now <br /><br />
-      <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link"
-        >Add Board Game</router-link
-      >
+      There are no board games.. Lets add one now
+      <br />
+      <br />
+      <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link">Add Board Game</router-link>
     </div>
   </div>
 </template>
 
 <script>
 //import PostsService from '@/services/PostsService';
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: 'games',
+  name: "games",
   data() {
     return {
       games: []
@@ -64,7 +58,7 @@ export default {
   methods: {
     getGames: function() {
       axios
-        .get('http://localhost:8080/boardgames')
+        .get("http://localhost:8081/boardgames")
         .then(response => {
           console.log(response);
           this.games = response.data;
@@ -76,7 +70,7 @@ export default {
     deleteGames: function(id) {
       alert(id);
       axios
-        .delete('http://localhost:8080/boardgames/' + id)
+        .delete("http://localhost:8081/boardgames/" + id)
         .then(response => {
           console.log(response);
         })
