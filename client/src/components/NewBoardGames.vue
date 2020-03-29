@@ -33,17 +33,6 @@
               v-model="Boardgame.duration"
             />
           </div>
-          <div>
-            <label>Difficulties:</label>
-
-            <select id="diff">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          </div>
 
           <div>
             <textarea
@@ -59,8 +48,6 @@
         </div>
       </div>
     </div>
-
-    <component-to-re-render :key="NewBoardGame" />
   </div>
 </template>
 
