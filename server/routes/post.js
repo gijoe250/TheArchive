@@ -17,6 +17,7 @@ router.post('/', (req, res) => {
             console.log(error);
         }
         res.send({
+            post: new_post,
             success: true,
             message: 'Post saved successfully!'
         });

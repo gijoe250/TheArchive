@@ -3,14 +3,19 @@
     <h1>Add Post</h1>
     <div class="form">
       <div>
-        <input type="text" name="title" placeholder="TITLE" v-model="title" />
+        <input
+          type="text"
+          name="title"
+          placeholder="TITLE"
+          v-model="Post.title"
+        />
       </div>
       <div>
         <textarea
           rows="15"
           cols="15"
           placeholder="DESCRIPTION"
-          v-model="description"
+          v-model="Post.description"
         ></textarea>
       </div>
       <div>
@@ -27,21 +32,20 @@ export default {
   name: 'NewPost',
   data() {
     return {
-      title: '',
-      description: ''
+      Post: {title: '', description: ''}
     };
   },
   methods: {
     addPost: function() {
-      alert('You sumbitted' + this.title + ' + ' + this.description);
+      alert('You sumbitted' + this.Post.title + ' + ' + this.Post.description);
       let newPost = {
-        title: this.title,
-        description: this.description
+        title: this.Post.title,
+        description: this.Post.description
       };
 
-      console.log(newPost);
+      alert(newPost.description);
       axios
-        .post('http://localhost:8081/api/post/')
+        .post('http://localhost:8081/api/post/', newPost)
         .then(response => {
           console.log(response);
         })
