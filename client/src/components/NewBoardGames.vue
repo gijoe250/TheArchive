@@ -5,17 +5,25 @@
       <div>
         <input
           type="text"
-          name="title"
-          placeholder="TITLE"
+          name="name"
+          placeholder="NAME"
           v-model="Boardgame.name"
         />
       </div>
       <div>
         <input
           type="text"
-          name="title"
-          placeholder="TITLE"
-          v-model="Boardgame.name"
+          name="price"
+          placeholder="PRICE"
+          v-model="Boardgame.price"
+        />
+      </div>
+      <div>
+        <input
+          type="number"
+          name="duration"
+          placeholder="DURATION"
+          v-model="Boardgame.duration"
         />
       </div>
       <div>
@@ -33,7 +41,7 @@
           rows="10"
           cols="65"
           placeholder="DESCRIPTION"
-          v-model="Boardgame.price"
+          v-model="Boardgame.description"
         ></textarea>
       </div>
       <div>

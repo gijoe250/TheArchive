@@ -30,6 +30,7 @@ router.post('/', (req, res, next) => {
 
 router.get('/:boardgameId', (req, res, next) => {
     const id = req.params.boardgameId;
+    console.log('function reached');
     Boardgame.findById(id)
         .exec()
         .then(doc => {
