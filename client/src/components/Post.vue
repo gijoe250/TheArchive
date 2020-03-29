@@ -13,18 +13,26 @@
       <table>
         <tr>
           <td>Title</td>
-          <td width="550">Description</td>
-          <td width="100" align="center">Action</td>
+          <td>Price</td>
+          <td>Num of Players</td>
+          <td>Difficulty</td>
+          <td>Duration</td>
+          <td>Description</td>
+          <td align="center">Action</td>
         </tr>
         <tr v-for="games in games" v-bind:key="games.title">
           <td>{{ games.name }}</td>
           <td>{{ games.price }}</td>
+          <td>{{ games.numOfPpl }}</td>
+          <td>{{ games.difficulty }}</td>
+          <td>{{ games.duration }}</td>
+          <td>{{ games.description }}</td>
           <td align="center">
             <router-link v-bind:to="{name: 'EditPost', params: {id: games._id}}"
               >Edit</router-link
             >
             |
-            <a href="#">Delete</a>
+            <a href="#" @click="deleteGames(games._id)">Delete</a>
           </td>
         </tr>
       </table>
@@ -59,6 +67,17 @@ export default {
         .then(response => {
           console.log(response);
           this.games = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    deleteGames: function(id) {
+      alert(id);
+      axios
+        .delete('http://localhost:8080/boardgames/' + id)
+        .then(response => {
+          console.log(response);
         })
         .catch(error => {
           console.log(error);
