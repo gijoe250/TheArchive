@@ -14,6 +14,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+    console.log(req.body);
+    // console.log(req.body.price);
+
     const boardgame = new Boardgame({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,

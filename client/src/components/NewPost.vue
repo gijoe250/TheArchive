@@ -1,13 +1,13 @@
 <template>
   <div class="posts">
-    <h1>Add Post</h1>
+    <h1>Add BoardGames</h1>
     <div class="form">
       <div>
         <input
           type="text"
           name="title"
           placeholder="TITLE"
-          v-model="Boardgame.title"
+          v-model="Post.title"
         />
       </div>
       <div>
@@ -15,11 +15,11 @@
           rows="15"
           cols="15"
           placeholder="DESCRIPTION"
-          v-model="Boardgame.price"
+          v-model="Post.description"
         ></textarea>
       </div>
       <div>
-        <button class="app_post_btn" @click="addBoardgame">Add</button>
+        <button class="app_post_btn" @click="addPost">Add</button>
       </div>
     </div>
   </div>
@@ -32,17 +32,21 @@ export default {
   name: 'NewPost',
   data() {
     return {
-      Boardgame: {name: '', price: ''}
+      Post: {title: '', description: ''}
     };
   },
   methods: {
-    addBoardgame: function() {
-      let newBoardGame = {
-        title: this.Boardgame.title,
-        description: this.Boardgame.description
+    addPost: function() {
+      let newPost = {
+        title: this.Post.title,
+        description: this.Post.description
       };
+
+      alert(newPost.title);
+      alert(newPost.description);
+
       axios
-        .post('http://localhost:8081/boardgames', newBoardGame)
+        .post('http://localhost:8081/api/post/', newPost)
         .then(response => {
           console.log(response);
         })

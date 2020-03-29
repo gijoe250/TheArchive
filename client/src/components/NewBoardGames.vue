@@ -1,25 +1,25 @@
 <template>
   <div class="posts">
-    <h1>Add Post</h1>
+    <h1>Add New Boardgame</h1>
     <div class="form">
       <div>
         <input
           type="text"
-          name="name"
-          placeholder=""
-          v-model="Boardgames.name"
+          name="title"
+          placeholder="TITLE"
+          v-model="Boardgame.name"
         />
       </div>
       <div>
         <textarea
           rows="15"
           cols="15"
-          placeholder="price"
-          v-model="Post.description"
+          placeholder="DESCRIPTION"
+          v-model="Boardgame.price"
         ></textarea>
       </div>
       <div>
-        <button class="app_post_btn" @click="addPost">Add</button>
+        <button class="app_post_btn" @click="addBoardgame">Add</button>
       </div>
     </div>
   </div>
@@ -27,26 +27,23 @@
 
 <script>
 //import PostsService from '@/services/PostsService';
+
 import axios from 'axios';
 export default {
-  name: 'NewPost',
+  name: 'NewBoardGame',
   data() {
     return {
-      Post: {title: '', description: ''}
+      Boardgame: {name: '', price: ''}
     };
   },
   methods: {
-    addPost: function() {
-      let newPost = {
-        title: this.Post.title,
-        description: this.Post.description
+    addBoardgame: function() {
+      let newBoardGame = {
+        name: this.Boardgame.name,
+        price: this.Boardgame.price
       };
-
-      alert(newPost.title);
-      alert(newPost.description);
-
       axios
-        .post('http://localhost:8081/api/post/', newPost)
+        .post('http://localhost:8080/boardgames', newBoardGame)
         .then(response => {
           console.log(response);
         })
@@ -57,6 +54,7 @@ export default {
   }
 };
 </script>
+
 <style type="text/css">
 .form input,
 .form textarea {
