@@ -9,8 +9,9 @@ import HelloWorld from '@/components/HelloWorld';
 import posts from '@/components/Post';
 
 import NewBoardGame from '@/components/NewBoardGames';
+import EditBoardGame from '@/components/EditBoardGames';
 import Login from '@/components/Login';
-import Register from '@/components/Register'
+import Register from '@/components/Register';
 
 Vue.config.productionTip = false;
 // Install BootstrapVue
@@ -33,6 +34,11 @@ const routes = [{
         path: '/boardgame/new',
         name: 'NewBoardGame',
         component: NewBoardGame
+    },
+    {
+        path: '/boardgame/edit',
+        name: 'EditBoardGame',
+        component: EditBoardGame
     },
     {
         path: '/login',
