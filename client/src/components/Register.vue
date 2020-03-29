@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h>Login</h>
+        <h>Register</h>
         <br>
         <input v-model="username" placeholder="Username" @keyup.enter="authorize">
         <br>
@@ -10,13 +10,12 @@
         Go
         </button>
         <br>
-        <router-link to="/signup" class="">Sign up</router-link>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'login',
+    name: 'register',
     data() {
         return {
             username: '',
@@ -31,3 +30,5 @@ export default {
     }
 };
 </script>
+
+<style></style>
