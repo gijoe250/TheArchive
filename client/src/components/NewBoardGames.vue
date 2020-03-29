@@ -1,6 +1,6 @@
 <template>
-  <div class="posts">
-    <h1>Add New Boardgame</h1>
+  <div class="post">
+    <h1>Add Board Game</h1>
     <div class="form">
       <div>
         <input
@@ -11,9 +11,27 @@
         />
       </div>
       <div>
+        <input
+          type="text"
+          name="title"
+          placeholder="TITLE"
+          v-model="Boardgame.name"
+        />
+      </div>
+      <div>
+        <select id="diff">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <div>
         <textarea
-          rows="15"
-          cols="15"
+          rows="10"
+          cols="65"
           placeholder="DESCRIPTION"
           v-model="Boardgame.price"
         ></textarea>
@@ -33,7 +51,22 @@ export default {
   name: 'NewBoardGame',
   data() {
     return {
-      Boardgame: {name: '', price: ''}
+      Boardgame: {
+        name: '',
+        price: '',
+        numOfPpl: '',
+        difficulties: '',
+        duration: '',
+        description: ''
+      },
+      difficulties: [
+        {text: 'Select One', value: null},
+        '1.0',
+        '2.0',
+        '3.0',
+        '4.0'
+      ],
+      show: true
     };
   },
   methods: {
@@ -57,7 +90,7 @@ export default {
 
 <style type="text/css">
 .form input,
-.form textarea {
+.form select .form textarea {
   width: 500px;
   padding: 10px;
   border: 1px solid #e0dede;

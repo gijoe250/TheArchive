@@ -1,4 +1,5 @@
 <template>
+
     <div>
         <h>Login</h>
         <br>
@@ -12,10 +13,12 @@
         <br>
         <router-link to="/signup" class="">Sign up</router-link>
     </div>
+
 </template>
 
 <script>
 export default {
+
     name: 'login',
     data() {
         return {
@@ -30,4 +33,5 @@ export default {
         }
     }
 };
+
 </script>
