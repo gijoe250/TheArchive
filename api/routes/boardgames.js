@@ -56,7 +56,7 @@ router.patch('/:boardgameId', (req, res, next) => {
             res.status(200).json(result);
         })
 });
-
+//deletes
 router.delete('/:boardgameId', (req, res, next) => {
    const id = req.params.boardgameId;
    Boardgame.remove({ _id : id})
