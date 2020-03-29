@@ -1,23 +1,26 @@
 <template>
-  <div class="posts">
-    <h1>Posts</h1>
-    <div v-if="posts.length > 0" class="table-wrap">
+  <div class="post">
+    <h1>Boardgames</h1>
+    <div v-if="games.length > 0" class="table-wrap">
       <div>
-        <router-link v-bind:to="{name: 'NewBoardGame'}" class=""
-          >Add New NewBoardGame</router-link
+        <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link"
+          >Add Board Game</router-link
         >
       </div>
+
+      <br />
+
       <table>
         <tr>
           <td>Title</td>
           <td width="550">Description</td>
           <td width="100" align="center">Action</td>
         </tr>
-        <tr v-for="post in posts" v-bind:key="post.title">
-          <td>{{ post.title }}</td>
-          <td>{{ post.description }}</td>
+        <tr v-for="games in games" v-bind:key="games.title">
+          <td>{{ games.name }}</td>
+          <td>{{ games.price }}</td>
           <td align="center">
-            <router-link v-bind:to="{name: 'EditPost', params: {id: post._id}}"
+            <router-link v-bind:to="{name: 'EditPost', params: {id: games._id}}"
               >Edit</router-link
             >
             |
@@ -26,31 +29,40 @@
         </tr>
       </table>
     </div>
+
     <div v-else>
-      There are no posts.. Lets add one now <br /><br />
-      <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_post_link"
-        >Add New Board Game</router-link
+      There are no board games.. Lets add one now <br /><br />
+      <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link"
+        >Add Board Game</router-link
       >
     </div>
   </div>
 </template>
 
 <script>
-import PostsService from '@/services/PostsService';
+//import PostsService from '@/services/PostsService';
+import axios from 'axios';
 export default {
-  name: 'posts',
+  name: 'games',
   data() {
     return {
-      posts: []
+      games: []
     };
   },
   mounted() {
-    this.getPosts();
+    this.getGames();
   },
   methods: {
-    async getPosts() {
-      const response = await PostsService.fetchPosts();
-      this.posts = response.data.posts;
+    getGames: function() {
+      axios
+        .get('http://localhost:8080/boardgames')
+        .then(response => {
+          console.log(response);
+          this.games = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };
@@ -82,7 +94,7 @@ a {
   color: #4d7ef7;
   text-decoration: none;
 }
-a.add_post_link {
+a.add_games_link {
   background: #4d7ef7;
   color: #fff;
   padding: 10px 80px;

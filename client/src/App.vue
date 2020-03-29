@@ -6,7 +6,7 @@
           <router-link to="/hello" class="nav-link">Hello World</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/posts" class="nav-link">Posts</router-link>
+          <router-link to="/posts" class="nav-link">Dashboard</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/login" class="nav-link">Login</router-link>
