@@ -13,7 +13,7 @@
           <td width="550">Description</td>
           <td width="100" align="center">Action</td>
         </tr>
-        <tr v-for="post in posts" v-bind:key="post.id">
+        <tr v-for="post in posts" v-bind:key="post.title">
           <td>{{ post.title }}</td>
           <td>{{ post.description }}</td>
           <td align="center">

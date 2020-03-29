@@ -3,14 +3,19 @@
     <h1>Add Post</h1>
     <div class="form">
       <div>
-        <input type="text" name="title" placeholder="TITLE" v-model="title" />
+        <input
+          type="text"
+          name="title"
+          placeholder="TITLE"
+          v-model="Post.title"
+        />
       </div>
       <div>
         <textarea
           rows="15"
           cols="15"
           placeholder="DESCRIPTION"
-          v-model="description"
+          v-model="Post.description"
         ></textarea>
       </div>
       <div>
@@ -21,22 +26,32 @@
 </template>
 
 <script>
-import PostsService from '@/services/PostsService';
+//import PostsService from '@/services/PostsService';
+import axios from 'axios';
 export default {
   name: 'NewPost',
   data() {
     return {
-      title: '',
-      description: ''
+      Post: {title: '', description: ''}
     };
   },
   methods: {
-    async addPost() {
-      await PostsService.addPost({
-        title: this.title,
-        description: this.description
-      });
-      this.$router.push({name: 'Posts'});
+    addPost: function() {
+      alert('You sumbitted' + this.Post.title + ' + ' + this.Post.description);
+      let newPost = {
+        title: this.Post.title,
+        description: this.Post.description
+      };
+
+      alert(newPost.description);
+      axios
+        .post('http://localhost:8081/api/post/', newPost)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };

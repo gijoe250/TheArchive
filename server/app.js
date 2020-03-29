@@ -3,12 +3,12 @@ const app = express();
 var mongoose = require('mongoose');
 const configDB = require('../config/database');
 var bodyParser = require('body-parser');
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 
 mongoose.connect(configDB.uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: process.env.DATABASE_NAME
+    dbName: 'test'
 });
 
 var db = mongoose.connection;

@@ -2,11 +2,6 @@ const express = require('express');
 const router = express.Router();
 var Post = require('../models/post');
 
-//@route        GET api/profile
-//@description  Test route
-//@access       Public
-router.get('/', (req, res) => res.send('items route'));
-
 // Add new post
 router.post('/', (req, res) => {
     var db = req.db;
@@ -22,10 +17,23 @@ router.post('/', (req, res) => {
             console.log(error);
         }
         res.send({
+            post: new_post,
             success: true,
             message: 'Post saved successfully!'
         });
     });
+});
+
+router.get('/', (req, res) => {
+    console.log('reach the function');
+    Post.find({}, 'title description', function(error, posts) {
+        if (error) {
+            console.error(error);
+        }
+        res.send({
+            posts: posts
+        });
+    }).sort({ _id: -1 });
 });
 
 module.exports = router;
