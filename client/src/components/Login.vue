@@ -85,12 +85,6 @@ export default {
 </script>
 
 <style>
-.horizontally-aligned{
-    margin-bottom: 0;
-    margin-top: 0;
-    margin-left: auto;
-    margin-right: auto;
-}
 .response-message{
     display: none;
 }

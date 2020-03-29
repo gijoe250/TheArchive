@@ -100,7 +100,7 @@ export default {
 <style>
 .horizontally-aligned{
     margin-bottom: 0;
-    margin-top: 0;
+    margin-top: 200px;
     margin-left: auto;
     margin-right: auto;
 }

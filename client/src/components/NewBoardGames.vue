@@ -1,33 +1,43 @@
 <template>
   <div class="post">
     <h1>Add Board Game</h1>
-    <div class="form">
-      <div>
-        <input type="text" name="name" placeholder="NAME" v-model="Boardgame.name" />
-      </div>
-      <div>
-        <input type="text" name="price" placeholder="PRICE" v-model="Boardgame.price" />
-      </div>
-      <div>
-        <input type="number" name="duration" placeholder="DURATION" v-model="Boardgame.duration" />
-      </div>
-      <div>
-        <label>Difficulties:</label>
+    <div class="card" id="card" style="height:auto; max-width: 35rem; align:center">
+      <div class="card bg-dark text-white">
+        <br />
+        <div class="form">
+          <div>
+            <input type="text" name="name" placeholder="NAME" v-model="Boardgame.name" />
+          </div>
+          <div>
+            <input type="text" name="price" placeholder="PRICE" v-model="Boardgame.price" />
+          </div>
+          <div>
+            <input
+              type="number"
+              name="duration"
+              placeholder="DURATION"
+              v-model="Boardgame.duration"
+            />
+          </div>
+          <div>
+            <label>Difficulties:</label>
 
-        <select id="diff">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </div>
+            <select id="diff">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
 
-      <div>
-        <textarea rows="10" cols="65" placeholder="DESCRIPTION" v-model="Boardgame.description"></textarea>
-      </div>
-      <div>
-        <button class="app_post_btn" @click="addBoardgame">Add</button>
+          <div>
+            <textarea rows="10" cols="65" placeholder="DESCRIPTION" v-model="Boardgame.description"></textarea>
+          </div>
+          <div>
+            <button class="app_post_btn" @click="addBoardgame">Add</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

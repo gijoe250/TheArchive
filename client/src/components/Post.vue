@@ -1,43 +1,49 @@
 <template>
   <div class="post">
     <h1>Boardgames</h1>
-    <div v-if="games.length > 0" class="table-wrap">
-      <div>
-        <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link">Add Board Game</router-link>
+    <br />
+    <div class="card" id="card" style="height:auto; max-width: 50rem; align:center">
+      <div class="card bg-dark text-white">
+        <br />
+        <div v-if="games.length > 0" class="table-wrap">
+          <div>
+            <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link">Add Board Game</router-link>
+          </div>
+
+          <br />
+
+          <table>
+            <tr>
+              <td>Title</td>
+              <td>Price</td>
+              <td>Num of Players</td>
+              <td>Difficulty</td>
+              <td>Duration</td>
+              <td>Description</td>
+              <td align="center">Action</td>
+            </tr>
+            <tr v-for="games in games" v-bind:key="games.title">
+              <td>{{ games.name }}</td>
+              <td>{{ games.price }}</td>
+              <td>{{ games.numOfPpl }}</td>
+              <td>{{ games.difficulty }}</td>
+              <td>{{ games.duration }}</td>
+              <td>{{ games.description }}</td>
+              <td align="center">
+                <router-link v-bind:to="{name: 'EditBoardGame', params: {id: games._id}}">Edit</router-link>|
+                <a href="#" @click="deleteGames(games._id)">Delete</a>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div v-else>
+          There are no board games.. Lets add one now
+          <br />
+          <br />
+          <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link">Add Board Game</router-link>
+        </div>
       </div>
-
-      <br />
-
-      <table>
-        <tr>
-          <td>Title</td>
-          <td>Price</td>
-          <td>Num of Players</td>
-          <td>Difficulty</td>
-          <td>Duration</td>
-          <td>Description</td>
-          <td align="center">Action</td>
-        </tr>
-        <tr v-for="games in games" v-bind:key="games.title">
-          <td>{{ games.name }}</td>
-          <td>{{ games.price }}</td>
-          <td>{{ games.numOfPpl }}</td>
-          <td>{{ games.difficulty }}</td>
-          <td>{{ games.duration }}</td>
-          <td>{{ games.description }}</td>
-          <td align="center">
-            <router-link v-bind:to="{name: 'EditBoardGame', params: {id: games._id}}">Edit</router-link>|
-            <a href="#" @click="deleteGames(games._id)">Delete</a>
-          </td>
-        </tr>
-      </table>
-    </div>
-
-    <div v-else>
-      There are no board games.. Lets add one now
-      <br />
-      <br />
-      <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link">Add Board Game</router-link>
     </div>
   </div>
 </template>
