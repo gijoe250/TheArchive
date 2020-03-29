@@ -20,7 +20,8 @@ router.post('/', (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         price: req.body.price,
-        numPlayers: req.body.numPlayers,
+        minPlayers: req.body.minPlayers,
+        maxPlayers: req.body.maxPlayers,
         difficulty: req.body.difficulty,
         duration: req.body.duration,
         description: req.body.description
