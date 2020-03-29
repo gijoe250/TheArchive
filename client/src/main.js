@@ -10,6 +10,7 @@ import posts from '@/components/Post';
 
 import NewBoardGame from '@/components/NewBoardGames';
 import Login from '@/components/Login';
+import Register from '@/components/Register'
 
 Vue.config.productionTip = false;
 // Install BootstrapVue
@@ -37,6 +38,11 @@ const routes = [{
         path: '/login',
         name: 'login',
         component: Login
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: Register
     }
 ];
 
