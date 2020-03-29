@@ -3,10 +3,13 @@
     <h1>Boardgames</h1>
     <div v-if="games.length > 0" class="table-wrap">
       <div>
-        <router-link v-bind:to="{name: 'NewBoardGame'}" class=""
+        <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link"
           >Add Board Game</router-link
         >
       </div>
+
+      <br />
+
       <table>
         <tr>
           <td>Title</td>
@@ -26,6 +29,7 @@
         </tr>
       </table>
     </div>
+
     <div v-else>
       There are no board games.. Lets add one now <br /><br />
       <router-link v-bind:to="{name: 'NewBoardGame'}" class="add_games_link"
@@ -45,12 +49,16 @@ export default {
       games: []
     };
   },
+  mounted() {
+    this.getGames();
+  },
   methods: {
     getGames: function() {
       axios
         .get('http://localhost:8080/boardgames')
         .then(response => {
           console.log(response);
+          this.games = response.data;
         })
         .catch(error => {
           console.log(error);
