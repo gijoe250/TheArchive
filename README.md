@@ -49,9 +49,6 @@ Project Path
   package.json
   server.js
 
-# TheArchive
-Repository for RowdyHacks project
-
 How to use the API:
   Login{ 
   Does not actually check stop access to boardgames. Cookies needed to check log in
