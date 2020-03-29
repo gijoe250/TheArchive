@@ -32,16 +32,11 @@ const routes = [{
         path: '/boardgame/new',
         name: 'NewBoardGame',
         component: NewBoardGame
-
-        path: '/posts/new',
-        name: 'NewPost',
-        component: NewPost
     },
     {
         path: '/login',
         name: 'login',
         component: Login
-
     }
 ];
 
