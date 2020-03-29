@@ -1,15 +1,21 @@
 const express = require('express');
 const router = express.Router();
-var Post = require('../models/post');
+const Post = require('../models/post');
+var mongoose = require('mongoose');
 
 // Add new post
 router.post('/', (req, res) => {
-    var db = req.db;
-    var title = req.body.title;
-    var description = req.body.description;
-    var new_post = new Post({
-        title: title,
-        description: description
+    console.log(req.body.title);
+    console.log(req.body.description);
+
+    //  var db = req.db;
+    //  var title = req.body.title;
+    //  var description = req.body.description;
+
+    const new_post = new Post({
+        _id: new mongoose.Types.ObjectId(),
+        title: req.body.title,
+        description: req.body.description
     });
 
     new_post.save(function(error) {
