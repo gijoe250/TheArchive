@@ -8,7 +8,7 @@ const Boardgame = require("../models/boardgame");
 // Handle incoming GET requests to /orders
 router.get("/", (req, res, next) => {
   User.find()
-    .select("user _id")
+    .select("username password _id")
     .exec()
     .then(docs => {
       res.status(200).json({
@@ -16,9 +16,9 @@ router.get("/", (req, res, next) => {
         users: docs.map(doc => {
           return {
             _id: doc._id,
-            boardgame: doc.boardgame,
             username: doc.username,
             password: doc.password,
+            boardgame: doc.boardgameId,
             request: {
               type: "GET",
               url: "http://localhost:3000/users/" + doc._id
@@ -30,7 +30,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  User.findById(req.body.boardgameId)
+  Boardgame.findById(req.body.boardgameId)
     .then(boardgame => {
       if (!boardgame) {
         return res.status(404).json({
