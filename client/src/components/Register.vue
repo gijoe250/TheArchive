@@ -1,14 +1,17 @@
 <template>
     <div>
+        <div>
+            {{ thing }}
+        </div>
         <h>Register</h>
         <br>
-        <input v-model="username" placeholder="Username" @keyup.enter="authorize">
+        Username <input v-model="username" placeholder="Enter Username" @keyup.enter="authorize">
         <br>
-        <input type="password" v-model="password" placeholder="Password" @keyup.enter="authorize">
+        Password <input type="password" v-model="password" placeholder="Enter Password" @keyup.enter="authorize">
         <br>
-        <button @click="authorize">
-        Go
-        </button>
+        Re-enter Password <input type="password" v-model="password2" placeholder="Enter Password" @keyup.enter="authorize">
+        <br>
+        <button @click="authorize">Submit</button>
         <br>
     </div>
 </template>
@@ -19,13 +22,22 @@ export default {
     data() {
         return {
             username: '',
-            password: ''
+            password: '',
+            password2: '',
+            thing: ''
         };
     },
     methods: {
         authorize: function(){
             this.username = ''
+            if ( this.password != this.password2 ) {
+                this.thing = 'Password must match'
+                }
+            else {
+                this.thing = ''
+                }
             this.password = ''
+            this.password2 = ''
         }
     }
 };

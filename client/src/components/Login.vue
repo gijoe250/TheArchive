@@ -10,7 +10,7 @@
         Go
         </button>
         <br>
-        <router-link to="/signup" class="">Sign up</router-link>
+        <router-link to="/register" class="">Sign up</router-link>
     </div>
 </template>
 
