@@ -1,15 +1,29 @@
 <template>
   <div class="post">
     <h1>Add Board Game</h1>
-    <div class="card" id="card" style="height:auto; max-width: 35rem; align:center">
+    <div
+      class="card"
+      id="card"
+      style="height:auto; max-width: 35rem; align:center"
+    >
       <div class="card bg-dark text-white">
         <br />
         <div class="form">
           <div>
-            <input type="text" name="name" placeholder="NAME" v-model="Boardgame.name" />
+            <input
+              type="text"
+              name="name"
+              placeholder="NAME"
+              v-model="Boardgame.name"
+            />
           </div>
           <div>
-            <input type="text" name="price" placeholder="PRICE" v-model="Boardgame.price" />
+            <input
+              type="text"
+              name="price"
+              placeholder="PRICE"
+              v-model="Boardgame.price"
+            />
           </div>
           <div>
             <input
@@ -32,7 +46,12 @@
           </div>
 
           <div>
-            <textarea rows="10" cols="65" placeholder="DESCRIPTION" v-model="Boardgame.description"></textarea>
+            <textarea
+              rows="10"
+              cols="65"
+              placeholder="DESCRIPTION"
+              v-model="Boardgame.description"
+            ></textarea>
           </div>
           <div>
             <button class="app_post_btn" @click="addBoardgame">Add</button>
@@ -40,31 +59,33 @@
         </div>
       </div>
     </div>
+
+    <component-to-re-render :key="NewBoardGame" />
   </div>
 </template>
 
 <script>
 //import PostsService from '@/services/PostsService';
 
-import axios from "axios";
+import axios from 'axios';
 export default {
-  name: "NewBoardGame",
+  name: 'NewBoardGame',
   data() {
     return {
       Boardgame: {
-        name: "",
-        price: "",
-        numOfPpl: "",
-        difficulties: "",
-        duration: "",
-        description: ""
+        name: '',
+        price: '',
+        numOfPpl: '',
+        difficulties: '',
+        duration: '',
+        description: ''
       },
       difficulties: [
-        { text: "Select One", value: null },
-        "1.0",
-        "2.0",
-        "3.0",
-        "4.0"
+        {text: 'Select One', value: null},
+        '1.0',
+        '2.0',
+        '3.0',
+        '4.0'
       ],
       show: true
     };
@@ -79,7 +100,7 @@ export default {
         difficulty: this.Boardgame.difficulties
       };
       axios
-        .post("http://localhost:8081/boardgames", newBoardGame)
+        .post('http://localhost:8081/boardgames', newBoardGame)
         .then(response => {
           console.log(response);
         })
