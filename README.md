@@ -12,7 +12,7 @@ Project Path
       routes/
         boardgames.js
         users.js
-        
+       
   client/
       public/
         favicon.ico
