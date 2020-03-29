@@ -5,7 +5,7 @@ import Router from 'vue-router';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // compounent
-import HelloWorld from '@/components/HelloWorld';
+import Home from '@/components/Home';
 import posts from '@/components/Post';
 
 import NewBoardGame from '@/components/NewBoardGames';
@@ -21,9 +21,9 @@ Vue.use(IconsPlugin);
 Vue.use(Router);
 
 const routes = [{
-        path: '/hello',
-        name: 'HelloWorld',
-        component: HelloWorld
+        path: '/',
+        name: 'Home',
+        component: Home
     },
     {
         path: '/posts',

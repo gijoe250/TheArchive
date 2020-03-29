@@ -3,17 +3,14 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link to="/hello" class="nav-link">Hello World</router-link>
+          <router-link to="/login" class="nav-link">Login</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/posts" class="nav-link">Dashboard</router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="/login" class="nav-link">Login</router-link>
-        </li>
       </ul>
     </nav>
-    <br />
+
     <transition name="fade">
       <router-view></router-view>
     </transition>
