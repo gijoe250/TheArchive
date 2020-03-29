@@ -18,8 +18,8 @@ app.use((req, res, next) => {
 });
 
 const boardgameRoutes = require('./api/routes/boardgames');
-const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users');
+const registerRoutes = require('./api/routes/registers');
 
 mongoose.connect(
     'mongodb+srv://stealing:test@cluster0-oddgf.mongodb.net/test?retryWrites=true&w=majority',
@@ -34,6 +34,6 @@ app.use(bodyParser.json());
 
 app.use('/boardgames', boardgameRoutes);
 app.use('/users', userRoutes);
-app.use('/orders', orderRoutes);
+app.use('/registers', registerRoutes);
 
 module.exports = app;
