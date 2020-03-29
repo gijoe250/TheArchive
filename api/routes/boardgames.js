@@ -20,11 +20,11 @@ router.post('/', (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         price: req.body.price,
-        numPlayers: req.body.numPlayers,
+        minNumPlayers: req.body.minNumPlayers,
+        maxNumPlayers: req.body.maxNumPlayers,
         difficulty: req.body.difficulty,
         duration: req.body.duration,
         description: req.body.description
-
     });
     boardgame.save();
     res.status(201).json({

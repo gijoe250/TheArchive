@@ -4,7 +4,8 @@ const boardgameSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: String,
     price: Number,
-    numPlayers: String,
+    minNumPlayers: Number,
+    maxNumPlayers: Number,
     difficulty: Number,
     duration: Number,
     description: String
