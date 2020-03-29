@@ -2,9 +2,9 @@
     <div>
         Login
         <br>
-        <input v-model="username" id="un" placeholder="Username" @keyup.enter="authorize">
+        <input v-model="username" placeholder="Username" @keyup.enter="authorize">
         <br>
-        <input type="password" id="pw" placeholder="Password">
+        <input type="password" v-model="password" placeholder="Password" @keyup.enter="authorize">
         <br>
         <button @click="authorize">
         Go
@@ -13,28 +13,19 @@
 </template>
 
 <script>
-import $ from 'jquery';
-
 export default {
-  name: 'login',
-data: {
-  	username: '',
-    password: ''
+    name: 'login',
+    data() {
+        return {
+            username: '',
+            password: ''
+        };
     },
-methods: {
-  	authorize: function(){
-    	this.username = ''
-      this.password = ''
+    methods: {
+        authorize: function(){
+            this.username = ''
+            this.password = ''
+        }
     }
-}
 };
-
-$( "#pw" ).keydown(function(e) {
-	if(e.which == 13) {
-  			$("#un").val("");
-        $(this).val("");
-    }
-});
-
-
 </script>
