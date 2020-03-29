@@ -1,49 +1,73 @@
 <template>
   <div class="posts">
     <h1>Edit Board Games</h1>
-    <div class="form">
-      <div>
-        <input type="text" name="name" placeholder="NAME" v-model="name" />
-      </div>
-      <div>
-        <input type="text" name="price" placeholder="PRICE" v-model="price" />
-      </div>
-      <div>
-        <input type="number" name="duration" placeholder="DURATION" v-model="duration" />
-      </div>
-      <div>
-        <select id="diff">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </div>
-      <div>
-        <textarea rows="10" cols="65" placeholder="DESCRIPTION" v-model="description"></textarea>
-      </div>
-      <div>
-        <button class="app_post_btn" @click="updatePost">Update</button>
+    <div
+      class="card"
+      id="card"
+      style="height:auto; max-width: 35rem; align:center"
+    >
+      <div class="card bg-dark text-white">
+        <br />
+        <div class="form">
+          <div>
+            <input type="text" name="name" placeholder="NAME" v-model="name" />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="price"
+              placeholder="PRICE"
+              v-model="price"
+            />
+          </div>
+          <div>
+            <input
+              type="number"
+              name="duration"
+              placeholder="DURATION"
+              v-model="duration"
+            />
+          </div>
+          <div>
+            <select id="diff">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div>
+            <textarea
+              rows="10"
+              cols="65"
+              placeholder="DESCRIPTION"
+              v-model="description"
+            ></textarea>
+          </div>
+          <div>
+            <button class="app_post_btn" @click="updatePost">Update</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 export default {
-  name: "EditBoardGame",
+  name: 'EditBoardGame',
   data() {
     return {
-      name: "",
-      description: ""
+      name: '',
+      description: ''
     };
   },
   methods: {
     getGames: function(id) {
       axios
-        .get("http://localhost:8081/boardgames/" + id)
+        .get('http://localhost:8081/boardgames/' + id)
         .then(response => {
           console.log(response);
         })
