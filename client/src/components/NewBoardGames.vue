@@ -27,6 +27,8 @@
         />
       </div>
       <div>
+        <label>Difficulties: </label>
+
         <select id="diff">
           <option value="1">1</option>
           <option value="2">2</option>
@@ -118,5 +120,9 @@ export default {
   width: 520px;
   border: none;
   cursor: pointer;
+}
+.label {
+  font-size: 12px;
+  text-transform: uppercase;
 }
 </style>
