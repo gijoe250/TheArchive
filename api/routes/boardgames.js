@@ -8,15 +8,14 @@ const Boardgame = require('../models/boardgame');
 //@description  Test route
 //@access       Public
 router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling GET reqs to /boardgames'
-    });
+    Boardgame.find()
+        .exec()
+        .then(docs => {
+            res.status(200).json(docs);
+        });
 });
 
 router.post('/', (req, res, next) => {
-    console.log(req.body);
-    // console.log(req.body.price);
-
     const boardgame = new Boardgame({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
@@ -31,18 +30,38 @@ router.post('/', (req, res, next) => {
 
 router.get('/:boardgameId', (req, res, next) => {
     const id = req.params.boardgameId;
+    Boardgame.findById(id)
+        .exec()
+        .then(doc => {
+            if (doc) {
+                res.status(200).json(doc);
+            } else {
+                res.status(404).json({ message: 'No valid entry found for provided ID' });
+            }
+        });
 });
 
 router.patch('/:boardgameId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Updated'
-    });
-});
+    const id = req.params.boardgameId;
+    const updateOps = {};
+    for (const ops of req.body) {
+        updateOps[ops.propName] = ops.value;
+    }
 
+    Boardgame.update({ _id: id }, { $set: updateOps })
+        .exec()
+        .then(result => {
+            res.status(200).json(result);
+        });
+});
+//deletes
 router.delete('/:boardgameId', (req, res, next) => {
-    res.status(200).json({
-        message: 'delete'
-    });
+    const id = req.params.boardgameId;
+    Boardgame.remove({ _id: id })
+        .exec()
+        .then(result => {
+            res.status(200).json(result);
+        });
 });
 
 module.exports = router;
