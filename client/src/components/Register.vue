@@ -1,34 +1,111 @@
 <template>
     <div>
-        <h>Register</h>
-        <br>
-        <input v-model="username" placeholder="Username" @keyup.enter="authorize">
-        <br>
-        <input type="password" v-model="password" placeholder="Password" @keyup.enter="authorize">
-        <br>
-        <button @click="authorize">
-        Go
-        </button>
-        <br>
+        <div class="card horizontally-aligned" style="width: 30rem;">
+            <div class="card" id="card" style="max-width: 30rem;">
+                <div class="card bg-dark text-white">
+                    <div class="card-header"><h3>Register</h3>
+                    </div>
+                    <br>
+                    <div class="card-body">
+                        <div align="center"><font size="4">{{ thing }}</font></div>
+                        <form>
+                            <div class="row">
+                                <div class="col">
+                                    <font size="4">Username</font>
+                                </div>
+                                <div class="col">
+                                    <input v-model="username" placeholder="Enter Username" @keyup.enter="authorize">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <font size="4">Password</font>
+                                </div>
+                                <div class="col">
+                                <input type="password" v-model="password" placeholder="Enter Password" @keyup.enter="authorize">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                   <font size="4">Verify Password</font>
+                                </div>
+                                <div class="col">
+                                    <input type="password" v-model="password2" placeholder="Verify Password" @keyup.enter="authorize">
+                                </div>
+                            </div>
+                            <div class="float-right">
+                            <b-button @click="authorize">Submit</b-button>
+                            </div>
+                            <br>
+                            <br>
+                            <font size="4">Have an account? <router-link to="/login" class="">Login</router-link></font> 	
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <div id="response" class="response-message horizontally-aligned">
+            <p>You have registered succesfully!</p>
+        </div>
+        </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+import $ from 'jquery';
 export default {
     name: 'register',
     data() {
         return {
             username: '',
-            password: ''
+            password: '',
+            password2: '',
+            thing: ''
         };
     },
     methods: {
         authorize: function(){
             this.username = ''
+            if ( this.password != this.password2 ) {
+                this.thing = 'Password must match'
+                }
+            else {
+                this.thing = ''
+                $("#card").slideUp();
+                $("#response").slideDown();
+                }
             this.password = ''
+            this.password2 = ''
+
+        },
+        register: function() {
+        let registerInfo = {
+            username: this.username,
+            password: this.password
+        };
+
+        axios
+            .post('http://localhost:8081/api/post/', registerInfo)
+            .then(response => {
+            console.log(response);
+            })
+            .catch(error => {
+            console.log(error);
+            });
         }
+
     }
 };
 </script>
 
-<style></style>
+<style>
+.horizontally-aligned{
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.response-message{
+    display: none;
+}
+</style>
