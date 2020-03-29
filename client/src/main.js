@@ -8,6 +8,9 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import HelloWorld from '@/components/HelloWorld';
 import posts from '@/components/Post';
 import NewPost from '@/components/NewPost';
+import Login from '@/components/Login';
+
+
 
 Vue.config.productionTip = false;
 // Install BootstrapVue
@@ -30,6 +33,11 @@ const routes = [{
         path: '/posts/new',
         name: 'NewPost',
         component: NewPost
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
     }
 ];
 
