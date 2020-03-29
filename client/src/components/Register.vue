@@ -7,14 +7,14 @@
                     </div>
                     <br>
                     <div class="card-body">
-                        <div align="center"><font size="4">{{ thing }}</font></div>
+                        <div align="center"><font size="4">{{ message }}</font></div>
                         <form>
                             <div class="row">
                                 <div class="col">
                                     <font size="4">Username</font>
                                 </div>
                                 <div class="col">
-                                    <input v-model="username" placeholder="Enter Username" @keyup.enter="authorize">
+                                    <input v-model="username" placeholder="Enter Username" @keyup.enter="register">
                                 </div>
                             </div>
                             <div class="row">
@@ -22,7 +22,7 @@
                                     <font size="4">Password</font>
                                 </div>
                                 <div class="col">
-                                <input type="password" v-model="password" placeholder="Enter Password" @keyup.enter="authorize">
+                                <input type="password" v-model="password" placeholder="Enter Password" @keyup.enter="register">
                                 </div>
                             </div>
                             <div class="row">
@@ -30,11 +30,11 @@
                                    <font size="4">Verify Password</font>
                                 </div>
                                 <div class="col">
-                                    <input type="password" v-model="password2" placeholder="Verify Password" @keyup.enter="authorize">
+                                    <input type="password" v-model="password2" placeholder="Verify Password" @keyup.enter="register">
                                 </div>
                             </div>
                             <div class="float-right">
-                            <b-button @click="authorize">Submit</b-button>
+                            <b-button @click="register">Submit</b-button>
                             </div>
                             <br>
                             <br>
@@ -44,7 +44,7 @@
                 </div>
             </div>
         <div id="response" class="response-message horizontally-aligned">
-            <p>You have registered succesfully!</p>
+            <p style="color: black;"><font size="4">You have registered succesfully!</font></p>
         </div>
         </div>
     </div>
@@ -60,40 +60,39 @@ export default {
             username: '',
             password: '',
             password2: '',
-            thing: ''
+            message: ''
         };
     },
     methods: {
-        authorize: function(){
-            this.username = ''
+        register: function(){
             if ( this.password != this.password2 ) {
-                this.thing = 'Password must match'
-                }
+                this.message = 'Passwords must match'
+            }
+            else if ( this.username == '' || this.password == '' || this.password2 == "" ){
+                this.message = 'Username, Password, and Verification required'
+            }
             else {
-                this.thing = ''
+                let registerInfo = {
+                    username: this.username,
+                    password: this.password
+                };
+
+                axios
+                .post('http://localhost:8081/api/post/', registerInfo)
+                .then(response => {
+                console.log(response);
+                })
+                .catch(error => {
+                console.log(error);
+                });
+                this.message = ''
                 $("#card").slideUp();
                 $("#response").slideDown();
                 }
+            this.username = ''
             this.password = ''
             this.password2 = ''
-
-        },
-        register: function() {
-        let registerInfo = {
-            username: this.username,
-            password: this.password
-        };
-
-        axios
-            .post('http://localhost:8081/api/post/', registerInfo)
-            .then(response => {
-            console.log(response);
-            })
-            .catch(error => {
-            console.log(error);
-            });
         }
-
     }
 };
 </script>
