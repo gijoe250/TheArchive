@@ -1,13 +1,19 @@
 import Vue from 'vue';
 import App from './App.vue';
+import Router from 'vue-router';
+//custom
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Router from 'vue-router';
-import HelloWorld from '@/components/HelloWorld';
-import item from '@/components/Items';
-import VueRouter from 'vue-router';
-Vue.config.productionTip = false;
+// compounent
+import Home from '@/components/Home';
+import posts from '@/components/Post';
 
+import NewBoardGame from '@/components/NewBoardGames';
+import EditBoardGame from '@/components/EditBoardGames';
+import Login from '@/components/Login';
+import Register from '@/components/Register';
+
+Vue.config.productionTip = false;
 // Install BootstrapVue
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
@@ -15,18 +21,38 @@ Vue.use(IconsPlugin);
 Vue.use(Router);
 
 const routes = [{
-        path: '/hello',
-        name: 'HelloWorld',
-        component: HelloWorld
+        path: '/',
+        name: 'Home',
+        component: Home
     },
     {
-        path: '/items',
-        name: 'item',
-        component: item
+        path: '/posts',
+        name: 'posts',
+        component: posts
+    },
+    {
+        path: '/boardgame/new',
+        name: 'NewBoardGame',
+        component: NewBoardGame
+    },
+    {
+        path: '/boardgame/edit',
+        name: 'EditBoardGame',
+        component: EditBoardGame
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: Register
     }
 ];
 
-const router = new VueRouter({
+const router = new Router({
     routes
 });
 

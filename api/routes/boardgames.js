@@ -25,6 +25,7 @@ router.post('/', (req, res, next) => {
         difficulty: req.body.difficulty,
         duration: req.body.duration,
         description: req.body.description
+
     });
     boardgame.save();
     res.status(201).json({
