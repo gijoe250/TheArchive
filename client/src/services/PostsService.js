@@ -6,6 +6,17 @@ export default {
     },
 
     addPost(params) {
+        console.log('enter here');
         return Api().post('posts', params);
     }
+
+    /*
+    ,updatePost(params) {
+        return Api().put('posts/' + params.id, params)
+    },
+
+    getPost(params) {
+        return Api().get('post/' + params.id)
+    }
+*/
 };

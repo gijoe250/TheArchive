@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import PostsService from '@/services/PostsService';
+//import PostsService from '@/services/PostsService';
+import axios from 'axios';
 export default {
   name: 'NewPost',
   data() {
@@ -31,12 +32,22 @@ export default {
     };
   },
   methods: {
-    async addPost() {
-      await PostsService.addPost({
+    addPost: function() {
+      alert('You sumbitted' + this.title + ' + ' + this.description);
+      let newPost = {
         title: this.title,
         description: this.description
-      });
-      this.$router.push({name: 'Posts'});
+      };
+
+      console.log(newPost);
+      axios
+        .post('http://localhost:8081/api/post/')
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };
