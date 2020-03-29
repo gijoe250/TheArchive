@@ -19,7 +19,12 @@ router.post('/', (req, res, next) => {
     const boardgame = new Boardgame({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
-        price: req.body.price
+        price: req.body.price,
+        minNumPlayers: req.body.minNumPlayers,
+        maxNumPlayers: req.body.maxNumPlayers,
+        difficulty: req.body.difficulty,
+        duration: req.body.duration,
+        description: req.body.description
     });
     boardgame.save();
     res.status(201).json({
@@ -30,7 +35,6 @@ router.post('/', (req, res, next) => {
 
 router.get('/:boardgameId', (req, res, next) => {
     const id = req.params.boardgameId;
-    console.log('function reached');
     Boardgame.findById(id)
         .exec()
         .then(doc => {
@@ -55,10 +59,10 @@ router.patch('/:boardgameId', (req, res, next) => {
             res.status(200).json(result);
         });
 });
-//deletes
+
 router.delete('/:boardgameId', (req, res, next) => {
     const id = req.params.boardgameId;
-    Boardgame.deleteOne({ _id: id })
+    Boardgame.remove({ _id: id })
         .exec()
         .then(result => {
             res.status(200).json(result);
