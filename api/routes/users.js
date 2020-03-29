@@ -1,68 +1,96 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-const User = require('../models/user');
+const User = require("../models/user");
 
-//@route        GET api/profile
-//@description  Test route
-//@access       Public
-router.get('/', (req, res, next) => {
-    User.find()
+router.post("/signup", (req, res, next) => {
+  User.find({ username: req.body.username })
     .exec()
-    .then(docs => {
-        res.status(200).json(docs);
-    })
-});
-
-router.post('/', (req, res, next) => {
-    const user = new User({
-        _id: new mongoose.Types.ObjectId(),
-        username: req.body.username,
-        password: req.body.password
-    });
-    user.save();
-    res.status(201).json({
-        message: 'Handling POST reqs to /users',
-        user: user
-    });
-});
-
-router.get('/:userId', (req, res, next) => {
-    const id = req.params.userId;
-    User.findById(id)
-    .exec()
-    .then(doc => {
-      if (doc) {
-        res.status(200).json(doc);
+    .then(user => {
+      if (user.length >= 1) {
+        return res.status(409).json({
+          message: "username exists"
+        });
       } else {
-        res
-          .status(404)
-          .json({ message: "No valid entry found for provided ID" });
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+          if (err) {
+            return res.status(500).json({
+              error: err
+            });
+          } else {
+            const user = new User({
+              _id: new mongoose.Types.ObjectId(),
+              username: req.body.username,
+              password: hash
+            });
+            user
+              .save()
+              .then(result => {
+                console.log(result);
+                res.status(201).json({
+                  message: "User created"
+                });
+              })
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                });
+              });
+          }
+        });
       }
     });
 });
 
-router.patch('/:UserId', (req, res, next) => {
-    const id = req.params.userId;
-    const updateOps = {};
-    for (const ops of req.body){
-        updateOps[ops.propName] = ops.value;
-    }
-
-    User.update({ _id : id}, { $set: updateOps })
-        .exec()
-        .then(result => {
-            res.status(200).json(result);
-        })
+router.post("/login", (req, res, next) => {
+  User.find({ username: req.body.username })
+    .exec()
+    .then(user => {
+      if (user.length < 1) {
+        return res.status(401).json({
+          message: "Auth failed"
+        });
+      }
+      bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+        if (err) {
+          return res.status(401).json({
+            message: "Auth failed"
+          });
+        }
+        if (result) {
+          const token = jwt.sign(
+            {
+              username: user[0].username,
+              userId: user[0]._id
+            },
+            process.env.JWT_KEY,
+            {
+                expiresIn: "1h"
+            }
+          );
+          return res.status(200).json({
+            message: "Auth successful",
+            token: token
+          });
+        }
+        res.status(401).json({
+          message: "Auth failed"
+        });
+      });
+    })
 });
 
-router.delete('/:userId', (req, res, next) => {
-   const id = req.params.userId;
-   User.remove({ _id : id})
+router.delete("/:userId", (req, res, next) => {
+  User.remove({ _id: req.params.userId })
     .exec()
     .then(result => {
-        res.status(200).json(result);
+      res.status(200).json({
+        message: "User deleted"
+      });
     })
 });
 
